@@ -21,7 +21,9 @@ class Celsius:
         print ('set value')
         self.__temperature = value
 
-t = Celsius(-210)
+t = Celsius(-200)
+
+t.temperature
 #.__temperature(-300)
 print(t.__dict__)
-print ('{c}C = {f}F'.format(c=t.temperature(-210),f=t.to_huashe()))
+print ('{c}C = {f}F'.format(c=t.temperature,f=t.to_huashe()))
