@@ -8,8 +8,13 @@ headers = {
 
 html = requests.get(url,headers=headers)
 html.encoding=html.apparent_encoding
-url_rz = re.compile('href=".*?"',re.S|re.I)
+url_rz = re.compile('href = "(.*?)"',re.S|re.I)
 result=url_rz.findall(html.text)
 print(result)
+for i in result:
+    file=open('text.text','a',encoding='utf-8')
+    file.write(i+'\n')
+    file.close()
+
 
 
