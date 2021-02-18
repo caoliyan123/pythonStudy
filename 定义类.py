@@ -7,9 +7,25 @@ class student:  #
         self.name = name
         self.sex = sex
         self.shuxing = '学生'
+    def eat(self,food):
+        if food == 'meat':
+            price = 10
+            return price
+        else:
+            price=5
+            return price
+    def learn(self,*subject):
+        if 'python' in subject:
+            return ('前程似锦')
+        else:
+            return ('加油努力')
 
 
 zhang = student('hang','男')
+b = zhang.eat('meat')
+c = zhang.learn('python','english','math','chinese')
 
-zhang.name
-zhang.sex
+print(zhang.name)
+print(zhang.sex)
+print(b)
+print(c)
