@@ -17,4 +17,3 @@ with open('E:\\学习\\数据分析\\SQL作业附件 (1)\\SQL作业附件\\airpl
 
 
 
-
