@@ -13,6 +13,15 @@ for i in range(0,120,120):
     #print(html)
     start=html.find('{"code"')
     end=html.find('："}}')+len('："}}')
-    #print(json.loads(html[start:end]))
     result=json.loads(html[start:end])['data']['products']
-    print(result)
+    for pid in result:
+        pro_id = pid['pid']
+        v2url='https://mapi.vip.com/vips-mobile/rest/shopping/pc/product/module/list/v2?callback=getMerchandiseDroplets1&app_name=shop_pc&app_version=4.0&warehouse=VIP_BJ&fdc_area_id=103107101&client=pc&mobile_platform=1&province_id=103107&api_key=70f71280d5d547b2a7bb370a529aeea1&user_id=&mars_cid=1613685844591_0610a409c5d025bd593cf23cf7df50aa&wap_consumer=a&productIds={}&scene=search&standby_id=nature&extParams=%7B%22stdSizeVids%22%3A%22%22%2C%22preheatTipsVer%22%3A%223%22%2C%22couponVer%22%3A%22v2%22%2C%22exclusivePrice%22%3A%221%22%2C%22iconSpec%22%3A%222x%22%7D&context=&_=1613774548752'.format(pid['pid'])
+        v2html=requests.get(v2url,headers=headers).text
+        start = v2html.find('{"code"')
+        end = v2html.find('"}}') + len('"}}')
+        result = json.loads(v2html[start:end])['data']['products'][0]
+        print(result['productId'])
+        print(result['brandShowName'])
+        print(result['title'])
+        print(result['price']['salePrice'])
