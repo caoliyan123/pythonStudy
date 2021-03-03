@@ -23,12 +23,13 @@ for i in range(1,2):
     'Referer': 'https://quanjing.com/search.aspx?q=%E6%98%A5%E5%A4%A9'
     }
     html=requests.get(url,params=params,headers=headers).text
+    print (html)
     start=html.find('{"pageindex"')
     end=html.find('}]}')+len('}]}')
     result=json.loads(html[start:end])['imglist']
-    for n in result:
-        print(n['pic_id'],n['imgurl'])
-        if not os.path.exists('quanjing'):
-            os.mkdir('quanjing')
-        with open('quanjing/{}.jpg'.format(n['pic_id']),'wb') as f:
-            f.write(requests.get(n['imgurl']).content)
+    # for n in result:
+    #     print(n['pic_id'],n['imgurl'])
+    #     if not os.path.exists('quanjing'):
+    #         os.mkdir('quanjing')
+    #     with open('quanjing/{}.jpg'.format(n['pic_id']),'wb') as f:
+    #         f.write(requests.get(n['imgurl']).content)
