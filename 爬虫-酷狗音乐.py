@@ -19,6 +19,7 @@ for lis in result:
     song_name=lis['songname']
     songer_name=lis['singername']
     hash=lis['hash']
+    albumid=lis['AlbumID']
 
     url='https://wwwapi.kugou.com/yy/index.php'
     params={
@@ -28,14 +29,18 @@ for lis in result:
         'dfid': '0PVFDZ3qVwt23cY1C93BuBR1',
         'mid': 'c16afe0890ad8c2a00901214f815242a',
         'platid': '4',
-        'album_id': '966846',
+        'album_id': albumid,
         '_': '1614761024895'
     }
     html=requests.get(url,params=params).text
-    print(json.loads(html))
+    start = html.find('{"status"')
+    end = html.find('}}}')+len('}}}')
+    result = json.loads(html[start:end])['data']
+    name = result['audio_name']
+    url = result['play_url']
+    print('正在下载',name)
+    with open('E:\个人文件\音乐\{}.mp3'.format(name),'wb') as f:
+        f.write(requests.get(url).content)
 
 
-    # s_start=html.find('{"status"')
-    # s_end=html.find('}}')+len('}}')-1
-    # s_result=json.loads(html[start:end])['data']
-    # print(s_result)
+
