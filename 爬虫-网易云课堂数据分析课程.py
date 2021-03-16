@@ -30,8 +30,8 @@ for id in less_id:
         lesson_title=html_dic['lessonTitle']
         video_url=html_dic['videoUrl']
         print('正在下载：',lesson_title)
-        if not os.path.exists('E:\\学习\\数据分析\\video'):
-            os.mkdir('E:\\学习\\数据分析\\video')
-        with open('E:\\学习\\数据分析\\video\\{}.mp4'.format(lesson_title),'wb') as f:
+        if not os.path.exists('E:\\学习\\video'):
+            os.mkdir('E:\\学习\\video')
+        with open('E:\\学习\\video\\{}.mp4'.format(lesson_title),'wb') as f:
             f.write(requests.get(video_url).content)
 
